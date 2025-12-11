@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 215 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+
+    /* Water-themed primary - Deep blue */
+    --primary: 210 80% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 210 90% 60%;
+
+    /* Secondary - Teal accent */
+    --secondary: 180 60% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 30% 92%;
+    --muted-foreground: 215 15% 50%;
+
+    --accent: 180 70% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Status colors */
+    --status-safe: 142 70% 45%;
+    --status-caution: 45 95% 55%;
+    --status-warning: 30 95% 55%;
+    --status-critical: 0 85% 60%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 88%;
+    --input: 210 20% 88%;
+    --ring: 210 80% 45%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(210 80% 45%), hsl(210 90% 60%));
+    --gradient-water: linear-gradient(135deg, hsl(210 80% 45%), hsl(180 70% 45%));
+    --gradient-safe: linear-gradient(135deg, hsl(142 70% 45%), hsl(142 60% 55%));
+    
+    /* Shadows */
+    --shadow-soft: 0 2px 8px hsl(210 40% 15% / 0.08);
+    --shadow-elevated: 0 4px 16px hsl(210 40% 15% / 0.12);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 215 30% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 215 28% 12%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 215 28% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 90% 60%;
+    --primary-foreground: 215 30% 8%;
+    --primary-glow: 210 100% 70%;
+
+    --secondary: 180 70% 50%;
+    --secondary-foreground: 215 30% 8%;
+
+    --muted: 215 25% 16%;
+    --muted-foreground: 215 15% 65%;
+
+    --accent: 180 80% 50%;
+    --accent-foreground: 215 30% 8%;
+
+    --status-safe: 142 70% 50%;
+    --status-caution: 45 95% 60%;
+    --status-warning: 30 95% 60%;
+    --status-critical: 0 85% 65%;
+
+    --destructive: 0 85% 65%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 25% 20%;
+    --input: 215 25% 20%;
+    --ring: 210 90% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
