@@ -1,0 +1,57 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #1a73e8;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 400px;
+}
+
+h2 {
+    color: #1a73e8;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+.status-pending { color: orange; }
+.status-success { color: green; font-weight: bold; }
+.status-fail { color: red; font-weight: bold; }
+
+#alerts-container {
+    background-color: #ffe0b2;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+#prediction-output {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border: 1px dashed #ccc;
+    white-space: pre-wrap;
+    max-height: 200px;
+    overflow-y: auto;
+}

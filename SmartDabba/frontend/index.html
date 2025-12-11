@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Dabba Water Quality Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>💧 Bengaluru Water Quality Monitoring</h1>
+    </header>
+
+    <main>
+        <section class="card" id="status-card">
+            <h2>API Status Check</h2>
+            <p>P1 Data API (5000): <span id="status-p1" class="status-pending">Checking...</span></p>
+            <p>P2 ML API (5001): <span id="status-p2" class="status-pending">Checking...</span></p>
+        </section>
+
+        <section class="card" id="alerts-card">
+            <h2>Contamination Alerts (P2 ML API)</h2>
+            <div id="alerts-container">Loading current alert data...</div>
+        </section>
+
+        <section class="card" id="prediction-card">
+            <h2>7-Day TDS Prediction</h2>
+            <label for="area-select">Select Area:</label>
+            <select id="area-select"></select>
+            <button onclick="fetchPrediction()">Get Prediction</button>
+            <pre id="prediction-output">Select an area and click 'Get Prediction'.</pre>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
