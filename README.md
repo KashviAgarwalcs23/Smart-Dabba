@@ -1,4 +1,55 @@
-# Smart-Dabba
+# Smart Dabba — Bengaluru Water Monitoring
+
+Smart Dabba is a lightweight water-quality monitoring system for Bengaluru, consisting of a React + TypeScript + Vite frontend and a Python (Flask) backend for ML predictions and simulation.
+
+# Repository Structure
+
+src/ — React + TypeScript frontend
+
+public/ — Static assets
+
+SmartDabba/ — Python backend (ML API, modeler, simulator)
+
+supabase/migrations/ — SQL migrations for profiles and user_history
+
+package.json, tsconfig.json, vite.config.ts — Frontend config files
+
+# Prerequisites
+
+Node.js 18+
+
+Python 3.10+
+
+Supabase project (optional for local runs; CSV fallback supported)
+
+# Local Setup (Windows PowerShell)
+# Frontend
+npm install
+npm run dev
+
+# Backend
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r SmartDabba/requirements.txt
+python SmartDabba/ml_api.py
+
+# Environment Variables
+
+# Frontend (public):
+
+VITE_SUPABASE_URL
+
+VITE_SUPABASE_ANON_KEY
+
+Backend (secret):
+
+SUPABASE_SERVICE_ROLE_KEY
+
+FIREBASE_SERVICE_ACCOUNT
+
+Any additional keys used by SmartDabba services
+
+Recommended .gitignore
 # Node
 node_modules/
 dist/
@@ -24,88 +75,36 @@ __pycache__/
 *.pyc
 .venv/
 
-Project overview
-Local setup (Windows PowerShell)
-Frontend:
-npm install
-npm run dev
-Backend:
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r SmartDabba/requirements.txt
-python SmartDabba/ml_api.py (or gunicorn per production)
-Required env vars (for GitHub Secrets & deployment):
-VITE_SUPABASE_URL
-VITE_SUPABASE_ANON_KEY
-SUPABASE_SERVICE_ROLE_KEY (server only — keep secret)
-FIREBASE_SERVICE_ACCOUNT (or store JSON as secret)
-Any other API keys used by SmartDabba services
-PowerShell commands to push to your friend's GitHub repo
 
-If the remote repo already has files (not empty), fetch & rebase first:
 
+# Supabase Migrations
+
+Run SQL files in supabase/migrations/ inside Supabase SQL Editor or using the Supabase CLI.
+
+# Push Commands (PowerShell)
+# New repo
+git init
+git checkout -b main
+git add .
+git commit -m "Initial import: SmartDabba"
+git remote add origin https://github.com/FriendUser/RepoName.git
+git push -u origin main
+
+# If remote already has commits
 git remote add origin https://github.com/FriendUser/RepoName.git
 git fetch origin
 git merge origin/main --allow-unrelated-histories
-# resolve conflicts if any, then
 git push -u origin main
 
-Set up GitHub repository settings (recommendations)
+# Deployment
+# Frontend
 
-Add a short LICENSE (MIT if permissive sharing is fine).
-Create repository Description + README.
-Protect main branch if you want (Settings → Branch protection).
-Enable Issues/Discussions if you want collaborators to track work.
-Add sensitive environment variables (GitHub Secrets / Deploy service)
+Recommended: Vercel
 
-In GitHub repo → Settings → Secrets and variables → Actions (or Environments), add:
-VITE_SUPABASE_URL
-VITE_SUPABASE_ANON_KEY (public key; safe but better to inject at deploy time)
-SUPABASE_SERVICE_ROLE_KEY (server-only: DO NOT expose to frontend)
-FIREBASE_SERVICE_ACCOUNT (store full JSON as single secret; your backend can read it and write a file at runtime)
-For Vercel/Netlify you can set the same env vars in project settings (these services inject env vars into builds and runtime).
-Run Supabase migrations (must be executed in Supabase)
+Set VITE_* environment variables in project settings
 
-The SQL files in supabase/migrations/*.sql must be applied in your Supabase project:
-Open Supabase dashboard → SQL Editor → run the profiles trigger SQL and 0002_create_user_history.sql migrations.
-Alternatively use supabase CLI to push migrations if configured.
-Deploy options (brief)
+# Backend
 
-Frontend
-Vercel: connect GitHub repo, set env vars in Project Settings, it auto-deploys Vite apps.
-Netlify: same workflow.
-GitHub Pages: possible but Vite + client routing needs special handling — Vercel is simplest.
-Backend (Python Flask)
-Railway, Heroku, Render, or Fly are good choices. Use requirements.txt and Procfile.
-Ensure SUPABASE_SERVICE_ROLE_KEY and Firebase JSON are set as env vars/secrets on the host.
-For Heroku: set Procfile, requirements.txt; on deploy, set config vars in Heroku dashboard.
-Run & verify locally (PowerShell)
+Hosts: Railway, Render, Heroku, or Fly.io
 
-Frontend:
-
-cd "c:\Users\Shaurya Sharma\Desktop\Mini Project"
-npm install
-npm run dev
-# open http://localhost:5173 (or as Vite prints)
-
-Backend (SmartDabba):
-
-cd "c:\Users\Shaurya Sharma\Desktop\Mini Project\SmartDabba"
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-# run server (example)
-python ml_api.py
-
-Security notes (important)
-
-NEVER commit smart-water-bms-firebase-adminsdk-*.json or any private key to GitHub. If it was already committed, rotate credentials immediately and remove the file from history (git rm --cached ... and use git filter-repo or bfg to purge history).
-Keep SUPABASE_SERVICE_ROLE_KEY server-only; never embed it in client code.
-Add Dependabot and vulnerability alerts in repo Settings.
-Optional automation (recommended)
-
-Add a GitHub Actions workflow to run npm ci + npx tsc --noEmit and pip install -r SmartDabba/requirements.txt + unit tests for CI on PRs. I can scaffold a simple .github/workflows/ci.yml if you want.
-
-
-
-
+Provide backend secrets as environment variables
